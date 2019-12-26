@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Typography, Icon } from "antd";
+import { connect } from "react-redux";
 
 import ProfileMenu from "./ProfileMenu";
 import AlbumsGrid from "./AlbumsGrid";
@@ -41,7 +42,12 @@ const Footer = styled.footer`
   padding: 10px;
 `;
 
-const App = () => {
+const App = ({ setUser }) => {
+  useEffect(() => {
+    setUser({
+      login: "Test"
+    })
+  }, [setUser]);
   return (
     <Container>
       <Header>
@@ -61,4 +67,10 @@ const App = () => {
   );
 };
 
-export default App;
+const mapProps = state => ({});
+
+const mapDispatch = ({ user: { setUser } }) => ({
+  setUser
+});
+
+export default connect(mapProps, mapDispatch)(App);
