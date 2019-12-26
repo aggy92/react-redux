@@ -1,11 +1,16 @@
+import { getUser } from "./api";
+
 export const user = {
   state: {},
   reducers: {
-    setUser: (state, payload) => {
-      console.log(state, payload);
-      return {
-        login: payload.login
-      };
+    setUser: (state, payload) => ({
+      login: payload.login
+    })
+  },
+  effects: dispatch => ({
+    fetchUser: async (payload, state) => {
+      const user = await getUser(payload);
+      dispatch.user.setUser(user);
     }
-  }
+  })
 };

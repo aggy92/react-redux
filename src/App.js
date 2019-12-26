@@ -42,12 +42,10 @@ const Footer = styled.footer`
   padding: 10px;
 `;
 
-const App = ({ setUser }) => {
+const App = ({ fetchUser }) => {
   useEffect(() => {
-    setUser({
-      login: "Test"
-    })
-  }, [setUser]);
+    fetchUser("token");
+  }, [fetchUser]);
   return (
     <Container>
       <Header>
@@ -69,8 +67,8 @@ const App = ({ setUser }) => {
 
 const mapProps = state => ({});
 
-const mapDispatch = ({ user: { setUser } }) => ({
-  setUser
+const mapDispatch = ({ user: { fetchUser } }) => ({
+  fetchUser
 });
 
 export default connect(mapProps, mapDispatch)(App);
