@@ -4,7 +4,9 @@ export const user = {
   state: {},
   reducers: {
     setUser: (state, payload) => ({
-      login: payload.login
+      id: payload.id,
+      login: payload.login,
+      name: `${payload.firstName} ${payload.lastName}`
     })
   },
   effects: dispatch => ({

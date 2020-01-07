@@ -1,9 +1,9 @@
-export const getUser = id =>
+export const getUser = token =>
   new Promise(resolve =>
     setTimeout(
       () =>
         resolve({
-          id,
+          id: 1,
           login: "90s_lover",
           firstName: "John",
           lastName: "Doe"
