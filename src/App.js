@@ -10,6 +10,7 @@ import SectionTitle from "./SectionTitle";
 const Container = styled.div`
   width: 100%;
   height: 100%;
+  background-color: #fafafa;
 `;
 
 const Header = styled.header`
@@ -28,7 +29,6 @@ const Header = styled.header`
 
 const AlbumsSection = styled.section`
   padding: 90px 10px 40px 10px;
-  background-color: #fafafa;
 `;
 
 const Footer = styled.footer`
