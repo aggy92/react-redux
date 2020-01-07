@@ -9,7 +9,7 @@ const ProfileButton = styled.div`
   align-items: center;
 `;
 
-const ProfileMenu = ({ user: { login, name } }) =>
+const ProfileMenu = ({ user: { login, name }, albumsCount }) =>
   login && name ? (
     <ProfileButton>
       <Dropdown
@@ -18,7 +18,7 @@ const ProfileMenu = ({ user: { login, name } }) =>
         overlay={
           <Menu>
             <Menu.Item key="0">Profile</Menu.Item>
-            <Menu.Item key="1">My albums (6)</Menu.Item>
+            <Menu.Item key="1">{`My albums (${albumsCount})`}</Menu.Item>
             <Menu.Item key="2">Friends</Menu.Item>
             <Menu.Divider />
             <Menu.Item key="3">Log out</Menu.Item>
@@ -29,10 +29,11 @@ const ProfileMenu = ({ user: { login, name } }) =>
       </Dropdown>
       <Typography.Text strong>{`${name} (${login})`}</Typography.Text>
     </ProfileButton>
-  ) : (
-    null
-  );
+  ) : null;
 
-const matchProps = ({ user }) => ({ user });
+const matchProps = ({ user, albums: { albums } }) => ({
+  user,
+  albumsCount: albums.length
+});
 
 export default connect(matchProps)(ProfileMenu);

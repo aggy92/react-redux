@@ -7,17 +7,18 @@ const Container = styled.div`
   padding: 20px 0 0 20px;
 `;
 
-const SectionTitle = ({ user: { login } }) =>
+const SectionTitle = ({ user: { login }, albumsCount }) =>
   login ? (
     <Container>
       <Typography.Title level={4}>
-        {`${login}'s music (6 albums):`}
+        {`${login}'s music (${albumsCount} albums):`}
       </Typography.Title>
     </Container>
-  ) : (
-    null
-  );
+  ) : null;
 
-const matchProps = ({ user }) => ({ user });
+const matchProps = ({ user, albums: { albums } }) => ({
+  user,
+  albumsCount: albums.length
+});
 
 export default connect(matchProps)(SectionTitle);
