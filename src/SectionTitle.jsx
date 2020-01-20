@@ -7,17 +7,15 @@ const Container = styled.div`
   padding: 20px 0 0 20px;
 `;
 
-const SectionTitle = ({ user: { login }, albumsCount }) =>
-  login ? (
-    <Container>
-      <Typography.Title level={4}>
-        {`${login}'s music (${albumsCount} albums):`}
-      </Typography.Title>
-    </Container>
-  ) : null;
+const SectionTitle = ({ albumsCount }) => (
+  <Container>
+    <Typography.Title level={4}>
+      {`My music (${albumsCount} albums):`}
+    </Typography.Title>
+  </Container>
+);
 
-const matchProps = ({ user, albums: { albums } }) => ({
-  user,
+const matchProps = ({ albums: { albums } }) => ({
   albumsCount: albums.length
 });
 

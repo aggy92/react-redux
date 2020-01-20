@@ -1,18 +1,4 @@
-export const getUser = token =>
-  new Promise(resolve =>
-    setTimeout(
-      () =>
-        resolve({
-          id: 1,
-          login: "90s_lover",
-          firstName: "John",
-          lastName: "Doe"
-        }),
-      1000
-    )
-  );
-
-export const getAlbums = userId =>
+export const getAlbums = () =>
   new Promise(
     resolve =>
       setTimeout(() =>

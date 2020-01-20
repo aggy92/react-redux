@@ -1,21 +1,15 @@
-import { getUser, getAlbums } from "./api";
+import { getAlbums } from "./api";
 
-export const user = {
-  state: {},
-  reducers: {
-    setUser: (state, payload) => ({
-      id: payload.id,
-      login: payload.login,
-      name: `${payload.firstName} ${payload.lastName}`
-    })
+export const appSettings = {
+  state: {
+    theme: "outline"
   },
-  effects: dispatch => ({
-    fetchUser: async (payload, state) => {
-      const user = await getUser(payload);
-      dispatch.user.setUser(user);
-      dispatch.albums.fetchAlbums(user.id);
-    }
-  })
+  reducers: {
+    setTheme: (state, payload) => ({
+      ...state,
+      theme: payload
+    })
+  }
 };
 
 export const albums = {
@@ -37,7 +31,7 @@ export const albums = {
   effects: dispatch => ({
     fetchAlbums: async (payload, state) => {
       dispatch.albums.setAlbumsLoaded(false)
-      const albums = await getAlbums(payload.id);
+      const albums = await getAlbums();
       dispatch.albums.setAlbums(albums);
     }
   })

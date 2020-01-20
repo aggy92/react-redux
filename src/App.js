@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import ProfileMenu from "./ProfileMenu";
 import AlbumsGrid from "./AlbumsGrid";
 import SectionTitle from "./SectionTitle";
+import Footer from "./Footer";
 
 const Container = styled.div`
   width: 100%;
@@ -16,13 +17,13 @@ const Container = styled.div`
 const Header = styled.header`
   width: 100%;
   height: 90px;
+  background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: fixed;
   padding: 10px 30px;
   top: 0;
-  background-color: white;
   z-index: 1;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
 `;
@@ -31,21 +32,10 @@ const AlbumsSection = styled.section`
   padding: 90px 10px 40px 10px;
 `;
 
-const Footer = styled.footer`
-  width: 100%;
-  height: 40px;
-  position: fixed;
-  bottom: 0;
-  z-index: 1;
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.09);
-  background-color: white;
-  padding: 10px;
-`;
-
-const App = ({ fetchUser }) => {
+const App = ({ fetchAlbums }) => {
   useEffect(() => {
-    fetchUser("token");
-  }, [fetchUser]);
+    fetchAlbums();
+  }, [fetchAlbums]);
   return (
     <Container>
       <Header>
@@ -65,10 +55,8 @@ const App = ({ fetchUser }) => {
   );
 };
 
-const mapProps = state => ({});
-
-const mapDispatch = ({ user: { fetchUser } }) => ({
-  fetchUser
+const mapDispatch = ({ albums: { fetchAlbums } }) => ({
+  fetchAlbums
 });
 
-export default connect(mapProps, mapDispatch)(App);
+export default connect(null, mapDispatch)(App);

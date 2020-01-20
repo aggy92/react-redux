@@ -1,6 +1,9 @@
 import React from "react";
 import { Card, Button } from "antd";
 import styled from "styled-components";
+import { connect } from "react-redux";
+
+import * as themes from "./themes";
 
 const CardBody = styled.div`
   display: flex;
@@ -8,7 +11,7 @@ const CardBody = styled.div`
   align-items: center;
 `;
 
-const Album = ({ data: { id, title, artist, year } }) => (
+const Album = ({ data: { id, title, artist, year }, theme }) => (
   <Card
     hoverable
     style={{
@@ -28,9 +31,14 @@ const Album = ({ data: { id, title, artist, year } }) => (
         shape="circle"
         icon="caret-right"
         style={{ padding: "0 0 2px 2px" }}
+        type={themes[theme].buttonType}
       />
     </CardBody>
   </Card>
 );
 
-export default Album;
+const mapProps = ({ appSettings: { theme } }) => ({
+  theme
+});
+
+export default connect(mapProps)(Album);
