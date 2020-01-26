@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Typography, Icon } from "antd";
-import { connect } from "react-redux";
 
 import ProfileMenu from "./ProfileMenu";
 import AlbumsGrid from "./AlbumsGrid";
@@ -32,31 +31,22 @@ const AlbumsSection = styled.section`
   padding: 90px 10px 40px 10px;
 `;
 
-const App = ({ fetchAlbums }) => {
-  useEffect(() => {
-    fetchAlbums();
-  }, [fetchAlbums]);
-  return (
-    <Container>
-      <Header>
-        <Typography.Title style={{ marginBottom: 0 }}>
-          <Icon type="notification" /> MyJukebox ™
-        </Typography.Title>
-        <ProfileMenu />
-      </Header>
-      <AlbumsSection>
-        <SectionTitle />
-        <AlbumsGrid />
-      </AlbumsSection>
-      <Footer>
-        <Typography.Text>Copyright © rdrezner 2020</Typography.Text>
-      </Footer>
-    </Container>
-  );
-};
+const App = () => (
+  <Container>
+    <Header>
+      <Typography.Title style={{ marginBottom: 0 }}>
+        <Icon type="notification" /> MyJukebox ™
+      </Typography.Title>
+      <ProfileMenu />
+    </Header>
+    <AlbumsSection>
+      <SectionTitle />
+      <AlbumsGrid />
+    </AlbumsSection>
+    <Footer>
+      <Typography.Text>Copyright © rdrezner 2020</Typography.Text>
+    </Footer>
+  </Container>
+);
 
-const mapDispatch = ({ albums: { fetchAlbums } }) => ({
-  fetchAlbums
-});
-
-export default connect(null, mapDispatch)(App);
+export default App;

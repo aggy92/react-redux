@@ -1,9 +1,49 @@
 import React from "react";
 import { Row, Col, Spin } from "antd";
-import { connect } from "react-redux";
 import styled from "styled-components";
 
 import Album from "./Album";
+
+const albums = [
+  {
+    id: 1,
+    artist: "Soundgarden",
+    title: "Superunknown",
+    year: "1994"
+  },
+  {
+    id: 2,
+    artist: "Red Hot Chili Peppers",
+    title: "Californication",
+    year: "1999"
+  },
+  {
+    id: 3,
+    artist: "Rage Against The Machine",
+    album: "Rage Against The Machine",
+    year: "1992"
+  },
+  {
+    id: 4,
+    artist: "Nirvana",
+    album: "Nevermind",
+    year: "1991"
+  },
+  {
+    id: 5,
+    artist: "Alice In Chains",
+    album: "Unplugged",
+    year: "1996"
+  },
+  {
+    id: 6,
+    artist: "The Roots",
+    album: "Things Fall Apart",
+    year: "1999"
+  }
+];
+
+const albumsLoaded = true;
 
 const columnsCount = 4;
 
@@ -12,7 +52,7 @@ const SpinnerContainer = styled.div`
   text-align: center;
 `;
 
-const AlbumsGrid = ({ albums, albumsLoaded }) => {
+const AlbumsGrid = () => {
   const rowsCount = Math.floor((albums.length - 1) / columnsCount) + 1;
   const albumsDataGrid = [...new Array(rowsCount)].map(() => []);
   albums.forEach((a, index) => {
@@ -39,9 +79,4 @@ const AlbumsGrid = ({ albums, albumsLoaded }) => {
   );
 };
 
-const mapProps = ({ albums: { albums, albumsLoaded } }) => ({
-  albums,
-  albumsLoaded
-});
-
-export default connect(mapProps)(AlbumsGrid);
+export default AlbumsGrid;

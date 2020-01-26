@@ -11,7 +11,7 @@ const ProfileButton = styled.div`
   align-items: center;
 `;
 
-const ProfileMenu = ({ albumsCount, theme }) => (
+const ProfileMenu = ({ theme }) => (
   <ProfileButton>
     <Dropdown
       trigger={["click"]}
@@ -19,7 +19,7 @@ const ProfileMenu = ({ albumsCount, theme }) => (
       overlay={
         <Menu>
           <Menu.Item key="0">Profile</Menu.Item>
-          <Menu.Item key="1">{`My albums (${albumsCount})`}</Menu.Item>
+          <Menu.Item key="1">{`My albums (??)`}</Menu.Item>
           <Menu.Item key="2">Friends</Menu.Item>
           <Menu.Divider />
           <Menu.Item key="3">Log out</Menu.Item>
@@ -36,8 +36,7 @@ const ProfileMenu = ({ albumsCount, theme }) => (
   </ProfileButton>
 );
 
-const matchProps = ({ albums: { albums }, appSettings: { theme } }) => ({
-  albumsCount: albums.length,
+const matchProps = ({ appSettings: { theme } }) => ({
   theme
 });
 
