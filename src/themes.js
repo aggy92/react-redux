@@ -6,7 +6,7 @@ const outline = {
 const solid = {
   buttonStyle: "solid",
   buttonType: "primary",
-}
+};
 
 export {
   outline,

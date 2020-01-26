@@ -1,7 +1,6 @@
 import React from "react";
 import { Menu, Dropdown, Button } from "antd";
 import styled from "styled-components";
-import { connect } from "react-redux";
 
 import * as themes from "./themes";
 
@@ -11,7 +10,7 @@ const ProfileButton = styled.div`
   align-items: center;
 `;
 
-const ProfileMenu = ({ theme }) => (
+const ProfileMenu = () => (
   <ProfileButton>
     <Dropdown
       trigger={["click"]}
@@ -30,14 +29,10 @@ const ProfileMenu = ({ theme }) => (
         shape="circle"
         icon="user"
         size="large"
-        type={themes[theme].buttonType}
+        type={themes.outline.buttonType}
       />
     </Dropdown>
   </ProfileButton>
 );
 
-const matchProps = ({ appSettings: { theme } }) => ({
-  theme
-});
-
-export default connect(matchProps)(ProfileMenu);
+export default ProfileMenu;
