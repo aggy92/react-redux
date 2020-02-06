@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Typography, Radio } from "antd";
+import {connect} from "react-redux";
 
 import * as themes from "./themes";
 
@@ -17,14 +18,22 @@ const FooterContainer = styled.footer`
   justify-content: space-between;
 `;
 
-const Footer = () => (
+const Footer = ({theme, onThemeChanged}) => (
   <FooterContainer>
     <Typography.Text>Copyright © rdrezner 2020</Typography.Text>
-    <Radio.Group value="outline" size="small" buttonStyle={themes.outline.buttonStyle}>
+    <Radio.Group value={theme} size="small" buttonStyle={themes[theme].buttonStyle} onChange={(e) => onThemeChanged(e.target.value)}>
       <Radio.Button value="outline">Outline</Radio.Button>
       <Radio.Button value="solid">Solid</Radio.Button>
     </Radio.Group>
   </FooterContainer>
 );
 
-export default Footer;
+const myProps = state => ({
+    theme: state.appSettings.theme
+});
+
+const myDispatch = dispatch => ({
+    onThemeChanged: dispatch.appSettings.setTheme
+});
+
+export default connect(myProps, myDispatch)(Footer);

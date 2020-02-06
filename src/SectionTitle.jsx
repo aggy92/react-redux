@@ -1,15 +1,21 @@
 import React from "react";
 import { Typography } from "antd";
 import styled from "styled-components";
+import {connect} from "react-redux";
+
 
 const Container = styled.div`
   padding: 20px 0 0 20px;
 `;
 
-const SectionTitle = () => (
+const SectionTitle = (props) => (
   <Container>
-    <Typography.Title level={4}>My music (?? albums):</Typography.Title>
+    <Typography.Title level={4}>My music ({props.length} albums):</Typography.Title>
   </Container>
 );
 
-export default SectionTitle;
+const mapProps = state => ({
+    length: state.albums.albumsList.length
+})
+
+export default connect(mapProps)(SectionTitle);

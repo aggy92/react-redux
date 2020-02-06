@@ -6,6 +6,8 @@ import ProfileMenu from "./ProfileMenu";
 import AlbumsGrid from "./AlbumsGrid";
 import SectionTitle from "./SectionTitle";
 import Footer from "./Footer";
+import {useEffect} from "react";
+import {connect} from "react-redux";
 
 const Container = styled.div`
   width: 100%;
@@ -31,7 +33,13 @@ const AlbumsSection = styled.section`
   padding: 90px 10px 40px 10px;
 `;
 
-const App = () => (
+const App = ({onInit}) => {
+
+  useEffect(() => {
+    onInit();
+  }, [onInit]);
+
+  return(
   <Container>
     <Header>
       <Typography.Title style={{ marginBottom: 0 }}>
@@ -47,6 +55,16 @@ const App = () => (
       <Typography.Text>Copyright © rdrezner 2020</Typography.Text>
     </Footer>
   </Container>
-);
+)};
 
-export default App;
+/*
+const mapDispatch = dispatcher => ({
+  onInit: dispatcher.albums.fetchedAlbums
+});
+*/
+
+const mapDispatcher = ({albums: {fetchAlbums}}) => ({
+  onInit: fetchAlbums,
+});
+
+export default connect(null, mapDispatcher)(App);

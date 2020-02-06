@@ -1,6 +1,7 @@
 import React from "react";
-import { Menu, Dropdown, Button } from "antd";
+import {Menu, Dropdown, Button} from "antd";
 import styled from "styled-components";
+import {connect} from "react-redux";
 
 import * as themes from "./themes";
 
@@ -10,29 +11,34 @@ const ProfileButton = styled.div`
   align-items: center;
 `;
 
-const ProfileMenu = () => (
-  <ProfileButton>
-    <Dropdown
-      trigger={["click"]}
-      placement="bottomLeft"
-      overlay={
-        <Menu>
-          <Menu.Item key="0">Profile</Menu.Item>
-          <Menu.Item key="1">{`My albums (??)`}</Menu.Item>
-          <Menu.Item key="2">Friends</Menu.Item>
-          <Menu.Divider />
-          <Menu.Item key="3">Log out</Menu.Item>
-        </Menu>
-      }
-    >
-      <Button
-        shape="circle"
-        icon="user"
-        size="large"
-        type={themes.outline.buttonType}
-      />
-    </Dropdown>
-  </ProfileButton>
+const ProfileMenu = (props) => (
+    <ProfileButton>
+        <Dropdown
+            trigger={["click"]}
+            placement="bottomLeft"
+            overlay={
+                <Menu>
+                    <Menu.Item key="0">Profile</Menu.Item>
+                    <Menu.Item key="1">Albums {props.length}</Menu.Item>
+                    <Menu.Item key="2">Friends</Menu.Item>
+                    <Menu.Divider/>
+                    <Menu.Item key="3">Log out</Menu.Item>
+                </Menu>
+            }
+        >
+            <Button
+                shape="circle"
+                icon="user"
+                size="large"
+                type={themes[props.theme].buttonType}
+            />
+        </Dropdown>
+    </ProfileButton>
 );
 
-export default ProfileMenu;
+const mapProps = state => ({
+    theme: state.appSettings.theme,
+    length: state.albums.albumsList.length
+});
+
+export default connect(mapProps)(ProfileMenu);
